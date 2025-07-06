@@ -16,6 +16,10 @@ export const goodsFromServer = [
   'Garlic',
 ];
 
+// Função para comparar os arrays (valores e ordem)
+const areArraysEqual = (a, b) =>
+  a.length === b.length && a.every((item, index) => item === b[index]);
+
 export const App = () => {
   const [goods, setGoods] = useState(goodsFromServer);
   const [sort, setSort] = useState('');
@@ -47,7 +51,7 @@ export const App = () => {
     setIsReversed(!isReversed);
   };
 
-  const resetButtonVisible = goods !== goodsFromServer;
+  const resetButtonVisible = !areArraysEqual(goods, goodsFromServer);
 
   return (
     <div className="section content">
