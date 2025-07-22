@@ -28,22 +28,19 @@ export const App = () => {
   };
 
   const sortAlphabetically = () => {
-    setGoods([...goods].sort((a, b) => a.localeCompare(b)));
-    setSort('sortAlphabetically');
+    setGoods([...goodsFromServer].sort((a, b) => a.localeCompare(b)));
+    setSort('alphabetically');
     setIsReversed(false);
   };
 
   const sortByLength = () => {
-    setGoods([...goods].sort((a, b) => a.length - b.length));
-    setSort('sortByLength');
+    setGoods([...goodsFromServer].sort((a, b) => a.length - b.length));
+    setSort('byLength');
     setIsReversed(false);
   };
 
   const reverse = () => {
-    const reversedGoods = [...goods].reverse();
-
-    setGoods(reversedGoods);
-    setSort('sortReverse');
+    setGoods([...goods].reverse());
     setIsReversed(!isReversed);
   };
 
@@ -55,7 +52,7 @@ export const App = () => {
         <button
           type="button"
           className={cn('button is-info', {
-            'is-light': sort !== 'sortAlphabetically',
+            'is-light': sort !== 'alphabetically',
           })}
           onClick={sortAlphabetically}
         >
@@ -65,7 +62,7 @@ export const App = () => {
         <button
           type="button"
           className={cn('button is-success', {
-            'is-light': sort !== 'sortByLength',
+            'is-light': sort !== 'byLength',
           })}
           onClick={sortByLength}
         >
@@ -75,7 +72,7 @@ export const App = () => {
         <button
           type="button"
           className={cn('button is-warning', {
-            'is-light': sort !== 'sortReverse',
+            'is-light': !isReversed,
           })}
           onClick={reverse}
         >
